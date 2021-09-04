@@ -36,12 +36,26 @@ func Build(dt string) string {
 
 	if (len(splitedDt) >= 1) {
 		hour, _ = strconv.Atoi(splitedDt[len(splitedDt)-1])
+		datetime := timeParse(year, month, day, hour)
+
+		if nowJST.Unix() > datetime.Unix() {
+			day += 1
+			datetime = timeParse(year, month, day, hour)
+			weekday = wdays[datetime.Weekday()]
+		}
 	}
 
 	if (len(splitedDt) >= 2) {
 		day, _ = strconv.Atoi(splitedDt[len(splitedDt)-2])
 		datetime := timeParse(year, month, day, hour)
 		weekday = wdays[datetime.Weekday()]
+
+		if nowJST.Unix() > datetime.Unix() {
+			monthNum := int(month) + 1
+			month = time.Month(monthNum)
+			datetime = timeParse(year, month, day, hour)
+			weekday = wdays[datetime.Weekday()]
+		}
 	}
 
 	if (len(splitedDt) >= 3) {
@@ -49,6 +63,12 @@ func Build(dt string) string {
 		month = time.Month(monthNum)
 		datetime := timeParse(year, month, day, hour)
 		weekday = wdays[datetime.Weekday()]
+
+		if nowJST.Unix() > datetime.Unix() {
+			year += 1
+			datetime = timeParse(year, month, day, hour)
+			weekday = wdays[datetime.Weekday()]
+		}
 	}
 
 	if (len(splitedDt) >= 4) {
