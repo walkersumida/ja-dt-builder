@@ -51,5 +51,11 @@ func Build(dt string) string {
 		weekday = wdays[datetime.Weekday()]
 	}
 
+	if (len(splitedDt) >= 4) {
+		year, _ = strconv.Atoi(splitedDt[len(splitedDt)-4])
+		datetime := timeParse(year, month, day, hour)
+		weekday = wdays[datetime.Weekday()]
+	}
+
 	return outPutFmtDt(month, day, weekday, hour)
 }
