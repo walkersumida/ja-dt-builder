@@ -34,7 +34,7 @@ func Build(dt string) string {
 
 	splitedDt := strings.Fields(dt)
 
-	if (len(splitedDt) >= 1) {
+	if len(splitedDt) >= 1 {
 		hour, _ = strconv.Atoi(splitedDt[len(splitedDt)-1])
 		datetime := timeParse(year, month, day, hour)
 
@@ -45,7 +45,7 @@ func Build(dt string) string {
 		}
 	}
 
-	if (len(splitedDt) >= 2) {
+	if len(splitedDt) >= 2 {
 		day, _ = strconv.Atoi(splitedDt[len(splitedDt)-2])
 		datetime := timeParse(year, month, day, hour)
 		weekday = wdays[datetime.Weekday()]
@@ -58,7 +58,7 @@ func Build(dt string) string {
 		}
 	}
 
-	if (len(splitedDt) >= 3) {
+	if len(splitedDt) >= 3 {
 		monthNum, _ := strconv.Atoi(splitedDt[len(splitedDt)-3])
 		month = time.Month(monthNum)
 		datetime := timeParse(year, month, day, hour)
@@ -71,7 +71,7 @@ func Build(dt string) string {
 		}
 	}
 
-	if (len(splitedDt) >= 4) {
+	if len(splitedDt) >= 4 {
 		year, _ = strconv.Atoi(splitedDt[len(splitedDt)-4])
 		datetime := timeParse(year, month, day, hour)
 		weekday = wdays[datetime.Weekday()]
